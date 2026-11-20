@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5fb">
+  <meta name="description" content="ROSE brings your specialized AI assistants into one calm, focused workspace.">
+  <title>ROSE | Your AI workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#" data-view="home" aria-label="ROSE home">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span class="brand-name">ROSE</span>
+      </a>
+      <button class="new-chat-button" id="new-chat-button" type="button">
+        <span aria-hidden="true">+</span><span>New conversation</span><kbd>Ctrl K</kbd>
+      </button>
+      <nav class="side-nav">
+        <p class="nav-label">Workspace</p>
+        <button class="nav-item is-active" type="button" data-section="home"><span class="nav-icon" aria-hidden="true">⌂</span><span>Home</span></button>
+        <button class="nav-item" type="button" data-section="crew"><span class="nav-icon" aria-hidden="true">✦</span><span>My Crew</span></button>
+        <button class="nav-item" type="button" data-section="activity"><span class="nav-icon" aria-hidden="true">◷</span><span>Activity</span></button>
+        <button class="nav-item" type="button" data-section="conversations"><span class="nav-icon" aria-hidden="true">▤</span><span>Conversations</span></button>
+        <p class="nav-label nav-label-spaced">Your space</p>
+        <button class="nav-item" type="button" data-planned="Saved Notes"><span class="nav-icon" aria-hidden="true">◇</span><span>Saved Notes</span><span class="planned-mini">Soon</span></button>
+        <button class="nav-item" type="button" id="settings-button"><span class="nav-icon" aria-hidden="true">⚙</span><span>Settings</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="subtle-link" type="button" id="about-button"><span aria-hidden="true">i</span> About ROSE</button>
+        <button class="subtle-link" type="button" id="team-button"><span aria-hidden="true">♧</span> Project Team</button>
+        <div class="profile-card">
+          <span class="avatar">F</span>
+          <span class="profile-copy"><strong>Faheem</strong><small>Personal workspace</small></span>
+          <span class="profile-status" aria-label="Single-user demo"></span>
+        </div>
+      </div>
+    </aside>
+    <div class="mobile-scrim" id="mobile-scrim"></div>
+
+    <main class="main-content">
+      <header class="mobile-header">
+        <button class="icon-button menu-button" id="menu-button" type="button" aria-label="Open navigation">☰</button>
+        <a class="brand mobile-brand" href="#" data-view="home"><span class="brand-mark">R</span><span class="brand-name">ROSE</span></a>
+        <button class="icon-button" id="mobile-new-chat" type="button" aria-label="New conversation">+</button>
+      </header>
+      <div class="topbar">
+        <div class="breadcrumb"><span>Workspace</span><span class="breadcrumb-divider">/</span><strong id="topbar-title">Home</strong></div>
+        <div class="topbar-right">
+          <span class="connection-pill" id="connection-pill"><span class="status-dot"></span><span>Checking services</span></span>
+          <button class="icon-button settings-shortcut" id="topbar-settings" type="button" aria-label="Open settings">⚙</button>
+        </div>
+      </div>
+
+      <section class="page-view home-view" id="home-view">
+        <div class="welcome-row">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-spark">✦</span> YOUR PERSONAL AI WORKSPACE</p>
+            <h1>Hey there, Faheem<span class="heading-period">.</span></h1>
+            <p class="welcome-subtitle">Big plans or tiny tasks? Your AI crew is ready to help.</p>
+          </div>
+          <button class="outline-button" type="button" id="home-new-chat"><span aria-hidden="true">+</span> Start a conversation</button>
+        </div>
+
+        <section class="prompt-card" aria-labelledby="prompt-heading">
+          <div class="prompt-card-top">
+            <div class="prompt-orb" aria-hidden="true"><span>✦</span></div>
+            <div><p class="prompt-kicker">A good place to start</p><h2 id="prompt-heading">What can your AI crew help you with?</h2></div>
+          </div>
+          <form id="home-prompt-form" class="prompt-form">
+            <label class="visually-hidden" for="home-prompt">Message your AI assistant</label>
+            <textarea id="home-prompt" name="message" rows="2" maxlength="10000" placeholder="Ask a question, share an idea, or describe a task..." required></textarea>
+            <div class="composer-footer">
+              <div class="selected-assistant-wrap">
+                <span class="selected-label">YOUR ASSISTANT</span>
+                <button class="assistant-select" id="selected-assistant" type="button" aria-label="Choose an assistant" aria-expanded="false">
+                  <span class="mini-assistant-icon">✦</span><span id="selected-assistant-name">General Assistant</span><span class="chevron">⌄</span>
+                </button>
+                <div class="assistant-picker" id="assistant-picker" hidden></div>
+              </div>
+              <div class="composer-action">
+                <span class="key-hint">Enter to send <span>·</span> Shift + Enter for a new line</span>
+                <button class="send-button" type="submit" aria-label="Send message"><span>Send</span><span aria-hidden="true">↑</span></button>
+              </div>
+            </div>
+          </form>
+          <div class="suggestions" aria-label="Prompt ideas">
+            <span class="suggestions-label">Try asking</span>
+            <button type="button" class="suggestion-chip" data-prompt="Help me plan my week and prioritize these tasks: ">Plan my week <span aria-hidden="true">↗</span></button>
+            <button type="button" class="suggestion-chip" data-prompt="Explain this concept in simple terms: ">Explain a concept <span aria-hidden="true">↗</span></button>
+            <button type="button" class="suggestion-chip" data-prompt="Help me understand and fix this code: ">Debug some code <span aria-hidden="true">↗</span></button>
+          </div>
+        </section>
+
+        <div class="section-heading" id="crew-section">
+          <div><p class="eyebrow">MADE FOR YOUR NEXT BIG IDEA</p><h2>Your AI crew</h2></div>
+          <span class="section-count" id="assistant-count">Loading assistants</span>
+        </div>
+        <div class="assistant-grid" id="assistant-grid" aria-live="polite"></div>
+
+        <div class="lower-grid">
+          <section class="activity-card" id="activity-section" aria-labelledby="activity-heading">
+            <div class="card-heading">
+              <div><p class="eyebrow">PICK UP WHERE YOU LEFT OFF</p><h2 id="activity-heading">Recent activity</h2></div>
+              <button class="text-button" id="view-all-conversations" type="button">View all <span aria-hidden="true">→</span></button>
+            </div>
+            <div class="conversation-list" id="recent-conversations"><p class="empty-state compact">Your recent conversations will appear here.</p></div>
+          </section>
+          <aside class="tip-card">
+            <span class="tip-icon" aria-hidden="true">✦</span>
+            <p class="eyebrow">A LITTLE TIP</p>
+            <h2>Better answers start with context.</h2>
+            <p>Tell your assistant what you are trying to do, who it is for, and what a useful answer looks like.</p>
+            <span class="tip-decoration" aria-hidden="true">ROSE</span>
+          </aside>
+        </div>
+        <footer class="page-footer"><span>ROSE <span class="footer-dot">·</span> Modular Multi-Assistant AI Platform</span><span>Built for focused work</span></footer>
+      </section>
+
+      <section class="page-view chat-view" id="chat-view" hidden>
+        <div class="chat-topline">
+          <button class="back-button" id="back-to-home" type="button"><span aria-hidden="true">←</span> Workspace</button>
+          <div class="chat-heading">
+            <span class="chat-assistant-icon" id="chat-assistant-icon">✦</span>
+            <div><p class="eyebrow" id="chat-assistant-label">GENERAL ASSISTANT</p><h1 id="chat-title">New conversation</h1></div>
+          </div>
+          <button class="outline-button compact-button" id="chat-new-chat" type="button"><span aria-hidden="true">+</span> New chat</button>
+        </div>
+        <div class="messages-shell">
+          <div class="messages-list" id="messages-list" aria-live="polite" aria-relevant="additions"></div>
+          <div class="chat-error" id="chat-error" role="alert" hidden></div>
+        </div>
+        <form class="chat-composer" id="chat-form">
+          <label class="visually-hidden" for="chat-prompt">Write a message</label>
+          <textarea id="chat-prompt" rows="1" maxlength="10000" placeholder="Write your message..." required></textarea>
+          <div class="chat-composer-bottom"><span id="chat-composer-assistant">General Assistant</span><button class="send-button" type="submit" aria-label="Send message"><span>Send</span><span aria-hidden="true">↑</span></button></div>
+        </form>
+        <p class="chat-disclaimer">ROSE can make mistakes. Review important information.</p>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="app-dialog" id="about-dialog">
+    <div class="dialog-heading"><div><p class="eyebrow">A SHARED WORKSPACE FOR SPECIALIZED AI</p><h2>About ROSE</h2></div><button class="icon-button dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
+    <p>ROSE is a modular multi-assistant platform that brings focused AI support for everyday questions and programming into one workspace.</p>
+    <p class="dialog-note">V1 includes the General and Coding assistants. Research and Document assistants are planned and are not active yet.</p>
+  </dialog>
+  <dialog class="app-dialog" id="team-dialog">
+    <div class="dialog-heading"><div><p class="eyebrow">BUILT AS A B.TECH CSE MAJOR PROJECT</p><h2>Project team</h2></div><button class="icon-button dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
+    <div class="team-list">
+      <div><span class="avatar">F</span><p><strong>Faheem Ul Islam Rather</strong><small>Project Leader</small></p></div>
+      <div><span class="avatar avatar-violet">A</span><p><strong>Mir Adnan Ishtiyaq</strong><small>Co-Leader</small></p></div>
+      <div><span class="avatar avatar-peach">I</span><p><strong>Mir Ibrahim</strong><small>Team Member</small></p></div>
+    </div>
+  </dialog>
+  <dialog class="app-dialog conversations-dialog" id="conversations-dialog">
+    <div class="dialog-heading"><div><p class="eyebrow">YOUR SAVED CHAT HISTORY</p><h2>Conversations</h2></div><button class="icon-button dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
+    <div class="all-conversations-list" id="all-conversations-list"><p class="empty-state">Loading conversations...</p></div>
+  </dialog>
+  <dialog class="app-dialog settings-dialog" id="settings-dialog">
+    <div class="dialog-heading"><div><p class="eyebrow">LOCAL DEVELOPMENT STATUS</p><h2>Settings</h2></div><button class="icon-button dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
+    <p class="dialog-note">ROSE runs as a single-user demo. Configuration stays in the backend environment file.</p>
+    <div class="settings-status-list" id="settings-status-list"><p>Checking service status...</p></div>
+    <p class="setup-hint">To enable AI replies, set AI_API_KEY in the root .env file, then restart FastAPI. Never put the key in frontend files.</p>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
